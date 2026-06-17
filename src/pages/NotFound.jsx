@@ -1,23 +1,21 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 import { MdArrowBack, MdHome } from "react-icons/md";
-
 export default function NotFound() {
   return (
-    <div className="min-h-screen flex items-center justify-center px-4">
-      <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="text-center">
-        <p className="text-9xl font-display font-black gradient-text mb-4">404</p>
-        <h2 className="font-display font-bold text-white text-3xl mb-3">Page Not Found</h2>
-        <p className="text-white/50 mb-8 max-w-sm">The page you're looking for doesn't exist or has been moved.</p>
-        <div className="flex items-center justify-center gap-4">
+    <div className="min-h-screen flex items-center justify-center px-4 bg-brand-bg">
+      <div className="text-center">
+        <p className="text-8xl font-display font-black text-brand-blue mb-4">404</p>
+        <h2 className="font-display font-bold text-brand-slate text-2xl mb-2">Page Not Found</h2>
+        <p className="text-brand-gray mb-8">The page you're looking for doesn't exist.</p>
+        <div className="flex gap-3 justify-center">
           <button onClick={() => window.history.back()} className="btn-secondary">
-            <MdArrowBack size={18} /> Go Back
+            <MdArrowBack size={16} /> Go Back
           </button>
           <Link to="/" className="btn-primary">
-            <MdHome size={18} /> Home
+            <MdHome size={16} /> Home
           </Link>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }

@@ -8,46 +8,38 @@ import { TESTIMONIALS } from "../../constants";
 
 export default function Testimonials() {
   return (
-    <section className="section-padding bg-white/2">
+    <section className="section-padding bg-white">
       <div className="container-custom">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-12"
-        >
-          <p className="badge-purple inline-block mb-3">Testimonials</p>
-          <h2 className="section-title">
-            What Our <span className="gradient-text">Clients Say</span>
-          </h2>
-        </motion.div>
-
+        <div className="text-center mb-10">
+          <h2 className="section-title mb-3">What Our Clients Say</h2>
+          <p className="section-sub max-w-xl mx-auto">
+            Trusted by hundreds of businesses across Lagos and Nigeria.
+          </p>
+        </div>
         <Swiper
           modules={[Autoplay, Pagination]}
-          spaceBetween={24}
+          spaceBetween={20}
           slidesPerView={1}
           breakpoints={{ 640: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }}
-          autoplay={{ delay: 4000, disableOnInteraction: false }}
+          autoplay={{ delay: 4500, disableOnInteraction: false }}
           pagination={{ clickable: true }}
-          className="pb-12"
-        >
-          {TESTIMONIALS.map((t) => (
+          className="pb-10">
+          {TESTIMONIALS.map(t => (
             <SwiperSlide key={t.id}>
-              <div className="glass-card p-6 h-full border border-white/10 hover:border-purple-400/20 transition-all">
-                <MdFormatQuote className="text-purple-400/40 mb-3" size={32} />
-                <p className="text-white/60 text-sm leading-relaxed mb-5">"{t.text}"</p>
-                <div className="flex items-center gap-1 mb-4">
+              <div className="card p-6 h-full">
+                <div className="flex mb-3">
                   {Array.from({ length: t.rating }).map((_, i) => (
-                    <MdStar key={i} className="text-yellow-400" size={14} />
+                    <MdStar key={i} className="text-yellow-400" size={15} />
                   ))}
                 </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-600 to-sky-500 flex items-center justify-center text-white font-bold text-sm">
+                <p className="text-brand-gray text-sm leading-relaxed mb-5">"{t.text}"</p>
+                <div className="flex items-center gap-3 border-t border-brand-border pt-4">
+                  <div className="w-9 h-9 rounded-full bg-brand-blue flex items-center justify-center text-white font-bold text-xs flex-shrink-0">
                     {t.avatar}
                   </div>
                   <div>
-                    <p className="text-white font-medium text-sm">{t.name}</p>
-                    <p className="text-white/40 text-xs">{t.role} · {t.company}</p>
+                    <p className="font-semibold text-brand-slate text-sm">{t.name}</p>
+                    <p className="text-brand-gray text-xs">{t.role} · {t.company}</p>
                   </div>
                 </div>
               </div>
