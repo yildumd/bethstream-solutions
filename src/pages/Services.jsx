@@ -5,7 +5,6 @@ import {
   MdLock, MdSecurity, MdCheckCircle, MdArrowForward,
 } from "react-icons/md";
 import { SERVICES } from "../constants";
-import { staggerContainer, staggerItem } from "../animations/variants";
 import CTABanner from "../components/home/CTABanner";
 
 const iconMap = {
@@ -13,73 +12,95 @@ const iconMap = {
   MdCable, MdLock, MdSecurity,
 };
 
-const colorClasses = {
-  purple: { bg: "bg-purple-500/15", text: "text-purple-400", border: "border-purple-500/20", badge: "badge-purple" },
-  sky: { bg: "bg-sky-500/15", text: "text-sky-400", border: "border-sky-500/20", badge: "badge-sky" },
-  lemon: { bg: "bg-lemon-500/15", text: "text-lemon-400", border: "border-lemon-500/20", badge: "badge-lemon" },
-};
-
 export default function Services() {
   return (
-    <div className="min-h-screen pt-28">
-      {/* Header */}
-      <section className="py-16 px-4 text-center">
-        <div className="max-w-3xl mx-auto">
+    <div className="min-h-screen bg-brand-bg">
+
+      {/* Page Header */}
+      <div className="bg-white border-b border-brand-border py-12 px-4">
+        <div className="max-w-3xl mx-auto text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-            <p className="badge-sky inline-block mb-4">Our Services</p>
-            <h1 className="section-title mb-4">
-              Complete <span className="gradient-text">Security Services</span>
+            <span className="badge-blue inline-block mb-4">Our Services</span>
+            <h1 className="font-display font-bold text-4xl text-brand-slate mb-4">
+              Complete Security & Networking Services
             </h1>
-            <p className="section-subtitle mx-auto">
-              From installation to maintenance — we deliver end-to-end security and networking solutions for Lagos businesses.
+            <p className="text-brand-gray text-lg leading-relaxed">
+              From installation to maintenance — end-to-end solutions for Lagos homes, businesses and enterprises.
             </p>
           </motion.div>
         </div>
-      </section>
+      </div>
 
-      {/* Services */}
-      <section className="pb-20 px-4">
-        <div className="max-w-7xl mx-auto space-y-16">
+      {/* Services List */}
+      <section className="py-16 px-4">
+        <div className="max-w-7xl mx-auto space-y-12">
           {SERVICES.map((service, idx) => {
-            const Icon = iconMap[service.icon] || MdSecurity;
-            const c = colorClasses[service.color] || colorClasses.purple;
+            const Icon   = iconMap[service.icon] || MdSecurity;
             const isEven = idx % 2 === 0;
+
             return (
               <motion.div
                 key={service.id}
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className={`grid grid-cols-1 lg:grid-cols-2 gap-10 items-center`}
+                transition={{ duration: 0.4 }}
+                className="card overflow-hidden"
               >
-                <div className={`${!isEven ? "lg:order-2" : ""}`}>
-                  <div className="relative rounded-2xl overflow-hidden aspect-video">
-                    <img
-                      src={service.image}
-                      alt={service.title}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                    <div className={`absolute bottom-4 left-4 w-12 h-12 rounded-xl ${c.bg} flex items-center justify-center border ${c.border}`}>
-                      <Icon className={c.text} size={24} />
+                <div className={`grid grid-cols-1 lg:grid-cols-2`}>
+
+                  {/* Image */}
+                  <div className={`relative ${!isEven ? "lg:order-2" : ""}`}>
+                    <div className="aspect-video lg:aspect-auto lg:h-full min-h-[240px] overflow-hidden">
+                      <img
+                        src={service.image}
+                        alt={service.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    {/* Service number badge on image */}
+                    <div className="absolute top-4 left-4 w-10 h-10 rounded-xl bg-white shadow-card flex items-center justify-center">
+                      <span className="text-brand-blue font-display font-bold text-sm">
+                        {String(idx + 1).padStart(2, "0")}
+                      </span>
                     </div>
                   </div>
-                </div>
-                <div className={`${!isEven ? "lg:order-1" : ""}`}>
-                  <span className={`${c.badge} inline-block mb-3`}>Service {String(idx + 1).padStart(2, "0")}</span>
-                  <h2 className="font-display font-bold text-white text-3xl mb-4">{service.title}</h2>
-                  <p className="text-white/60 leading-relaxed mb-6">{service.description}</p>
-                  <ul className="space-y-2 mb-8">
-                    {service.benefits.map(b => (
-                      <li key={b} className="flex items-center gap-3 text-sm">
-                        <MdCheckCircle className={c.text} size={16} />
-                        <span className="text-white/70">{b}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Link to="/request-quote" className="btn-primary">
-                    Get a Quote <MdArrowForward size={18} />
-                  </Link>
+
+                  {/* Content */}
+                  <div className={`p-8 lg:p-10 flex flex-col justify-center ${!isEven ? "lg:order-1" : ""}`}>
+
+                    {/* Icon + Title */}
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-11 h-11 rounded-xl bg-brand-blueLight flex items-center justify-center flex-shrink-0">
+                        <Icon className="text-brand-blue" size={22} />
+                      </div>
+                      <h2 className="font-display font-bold text-2xl text-brand-slate">
+                        {service.title}
+                      </h2>
+                    </div>
+
+                    {/* Description */}
+                    <p className="text-brand-gray text-base leading-relaxed mb-6">
+                      {service.description}
+                    </p>
+
+                    {/* Benefits */}
+                    <ul className="space-y-2.5 mb-8">
+                      {service.benefits.map(benefit => (
+                        <li key={benefit} className="flex items-center gap-3">
+                          <MdCheckCircle className="text-brand-accent flex-shrink-0" size={18} />
+                          <span className="text-brand-slate text-sm font-medium">{benefit}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    {/* CTA */}
+                    <div>
+                      <Link to="/request-quote" className="btn-primary">
+                        Get a Quote <MdArrowForward size={16} />
+                      </Link>
+                    </div>
+                  </div>
                 </div>
               </motion.div>
             );

@@ -1,15 +1,13 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { MdMenu, MdClose, MdShoppingCart, MdPhone, MdWhatsapp } from "react-icons/md";
-import { useCart } from "../../context/CartContext";
+import { MdMenu, MdClose, MdPhone, MdWhatsapp } from "react-icons/md";
 import { NAV_LINKS, COMPANY } from "../../constants";
 
 export default function Navbar() {
-  const [scrolled,    setScrolled]    = useState(false);
-  const [mobileOpen,  setMobileOpen]  = useState(false);
-  const { count }   = useCart();
-  const location    = useLocation();
+  const [scrolled,   setScrolled]   = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const h = () => setScrolled(window.scrollY > 10);
@@ -76,21 +74,18 @@ export default function Navbar() {
               ))}
             </div>
 
-            {/* Right */}
+            {/* Right side CTAs */}
             <div className="flex items-center gap-2">
-              <Link to="/request-quote"
-                className="hidden md:flex btn-primary py-2 px-5 text-xs">
-                Get a Quote
-              </Link>
+              <a
+                href={`https://wa.me/${COMPANY.whatsapp}`}
+                target="_blank" rel="noreferrer"
+                className="hidden md:flex items-center gap-2 px-4 py-2 rounded-lg bg-green-500 hover:bg-green-600 text-white text-sm font-semibold transition-colors">
+                <MdWhatsapp size={17} /> WhatsApp
+              </a>
 
-              <Link to="/cart"
-                className="relative p-2.5 rounded-lg text-brand-gray hover:text-brand-blue hover:bg-brand-blueLight transition-colors">
-                <MdShoppingCart size={22} />
-                {count > 0 && (
-                  <span className="absolute -top-0.5 -right-0.5 w-5 h-5 bg-brand-blue text-white text-[10px] rounded-full flex items-center justify-center font-bold">
-                    {count > 9 ? "9+" : count}
-                  </span>
-                )}
+              <Link to="/request-quote"
+                className="hidden md:flex btn-primary py-2 px-4 text-sm">
+                Get a Quote
               </Link>
 
               <button
@@ -122,19 +117,20 @@ export default function Navbar() {
                   </Link>
                 ))}
                 <div className="pt-2 border-t border-brand-border space-y-2">
+                  <a
+                    href={`https://wa.me/${COMPANY.whatsapp}`}
+                    target="_blank" rel="noreferrer"
+                    className="flex items-center justify-center gap-2 w-full py-3 rounded-lg bg-green-500 hover:bg-green-600 text-white font-semibold text-sm transition-colors">
+                    <MdWhatsapp size={18} /> WhatsApp Us
+                  </a>
                   <Link to="/request-quote" className="btn-primary w-full justify-center">
                     Get a Quote
                   </Link>
-                  <a href={`https://wa.me/${COMPANY.whatsapp}`}
-                    target="_blank" rel="noreferrer"
-                    className="btn-green w-full justify-center">
-                    <MdWhatsapp size={16} /> WhatsApp Us
-                  </a>
-                  <div className="flex gap-3 pt-1">
+                  <div className="flex flex-col gap-1 pt-1">
                     {COMPANY.phones.map(p => (
                       <a key={p} href={`tel:${p}`}
-                        className="text-brand-gray text-xs flex items-center gap-1 hover:text-brand-blue transition-colors">
-                        <MdPhone size={12} /> {p}
+                        className="text-brand-gray text-sm flex items-center gap-2 hover:text-brand-blue transition-colors px-1">
+                        <MdPhone size={14} /> {p}
                       </a>
                     ))}
                   </div>
