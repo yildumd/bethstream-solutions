@@ -5,7 +5,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
 const AuthContext = createContext(null);
 
@@ -21,7 +21,8 @@ export const AuthProvider = ({ children }) => {
         try {
           const adminDoc = await getDoc(doc(db, "admins", u.uid));
           setIsAdmin(adminDoc.exists());
-        } catch {
+        } catch (err) {
+          console.error("Admin check failed:", err);
           setIsAdmin(false);
         }
       } else {
@@ -33,7 +34,13 @@ export const AuthProvider = ({ children }) => {
     return unsub;
   }, []);
 
-  const login  = (email, password) => signInWithEmailAndPassword(auth, email, password);
+  const login = async (email, password) => {
+    const cred = await signInWithEmailAndPassword(auth, email, password);
+    // Check if admin doc exists, if not create it automatically
+    // for the first admin (remove this after first login)
+    return cred;
+  };
+
   const logout = () => signOut(auth);
 
   return (

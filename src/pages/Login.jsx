@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { MdEmail, MdLock, MdVisibility, MdVisibilityOff, MdAdminPanelSettings } from "react-icons/md";
+import {
+  MdEmail, MdLock, MdVisibility, MdVisibilityOff,
+  MdAdminPanelSettings,
+} from "react-icons/md";
 import { useAuth } from "../context/AuthContext";
 import toast from "react-hot-toast";
 
@@ -9,10 +12,18 @@ export default function Login() {
   const [form,     setForm]     = useState({ email: "", password: "" });
   const [showPass, setShowPass] = useState(false);
   const [loading,  setLoading]  = useState(false);
-  const { login }               = useAuth();
-  const navigate                = useNavigate();
+  const { login, user, isAdmin, loading: authLoading } = useAuth();
+  const navigate = useNavigate();
 
-  const handleChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }));
+  // If already logged in and is admin, redirect immediately
+  useEffect(() => {
+    if (!authLoading && user && isAdmin) {
+      navigate("/admin", { replace: true });
+    }
+  }, [user, isAdmin, authLoading, navigate]);
+
+  const handleChange = e =>
+    setForm(f => ({ ...f, [e.target.name]: e.target.value }));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,20 +34,27 @@ export default function Login() {
     setLoading(true);
     try {
       await login(form.email, form.password);
-      navigate("/admin");
+      // Navigate happens via useEffect once isAdmin is confirmed
+      toast.success("Signed in! Loading dashboard...");
     } catch (err) {
       const msg =
-        err.code === "auth/invalid-credential"   ? "Invalid email or password. Please try again." :
+        err.code === "auth/invalid-credential"    ? "Wrong email or password." :
         err.code === "auth/user-not-found"        ? "No account found with this email." :
-        err.code === "auth/wrong-password"        ? "Wrong password. Please try again." :
-        err.code === "auth/too-many-requests"     ? "Too many attempts. Please wait a moment." :
-        err.code === "auth/network-request-failed"? "Network error. Check your internet connection." :
+        err.code === "auth/wrong-password"        ? "Wrong password. Try again." :
+        err.code === "auth/too-many-requests"     ? "Too many attempts. Wait a moment." :
+        err.code === "auth/network-request-failed"? "Network error. Check your connection." :
         "Login failed. Please try again.";
       toast.error(msg);
-    } finally {
       setLoading(false);
     }
   };
+
+  // Show spinner while auth state is loading
+  if (authLoading) return (
+    <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+      <div className="w-8 h-8 border-2 border-brand-blue border-t-transparent rounded-full animate-spin" />
+    </div>
+  );
 
   return (
     <div className="min-h-screen bg-slate-50 flex items-center justify-center px-4 py-16">
@@ -60,7 +78,9 @@ export default function Login() {
             <div>
               <label className="label-text">Email Address</label>
               <div className="relative">
-                <MdEmail className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={17} />
+                <MdEmail
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
+                  size={17} />
                 <input
                   name="email"
                   type="email"
@@ -76,7 +96,9 @@ export default function Login() {
             <div>
               <label className="label-text">Password</label>
               <div className="relative">
-                <MdLock className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={17} />
+                <MdLock
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"
+                  size={17} />
                 <input
                   name="password"
                   type={showPass ? "text" : "password"}
@@ -90,7 +112,9 @@ export default function Login() {
                   type="button"
                   onClick={() => setShowPass(!showPass)}
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-brand-slate transition-colors">
-                  {showPass ? <MdVisibilityOff size={17} /> : <MdVisibility size={17} />}
+                  {showPass
+                    ? <MdVisibilityOff size={17} />
+                    : <MdVisibility size={17} />}
                 </button>
               </div>
             </div>
