@@ -15,19 +15,37 @@ export const getProducts = async (filters = {}) => {
     if (filters.featured) constraints.push(where("featured", "==", true));
     constraints.push(orderBy("createdAt", "desc"));
     if (filters.limit) constraints.push(limit(filters.limit));
+
     const q    = query(collection(db, COL), ...constraints);
     const snap = await getDocs(q);
-    if (snap.empty) {
-      return SAMPLE_PRODUCTS
-        .filter(p => {
-          if (filters.category && p.category !== filters.category) return false;
-          if (filters.featured && !p.featured) return false;
-          return true;
-        })
-        .slice(0, filters.limit || 100);
+
+    if (!snap.empty) {
+      return snap.docs.map(d => ({ id: d.id, ...d.data() }));
     }
-    return snap.docs.map(d => ({ id: d.id, ...d.data() }));
-  } catch {
+
+    const simpleConstraints = [];
+    if (filters.category) simpleConstraints.push(where("category", "==", filters.category));
+    if (filters.featured) simpleConstraints.push(where("featured", "==", true));
+
+    const q2    = query(collection(db, COL), ...simpleConstraints);
+    const snap2 = await getDocs(q2);
+
+    if (!snap2.empty) {
+      let results = snap2.docs.map(d => ({ id: d.id, ...d.data() }));
+      if (filters.limit) results = results.slice(0, filters.limit);
+      return results;
+    }
+
+    return SAMPLE_PRODUCTS
+      .filter(p => {
+        if (filters.category && p.category !== filters.category) return false;
+        if (filters.featured && !p.featured) return false;
+        return true;
+      })
+      .slice(0, filters.limit || 100);
+
+  } catch (err) {
+    console.warn("Firestore query failed, using samples:", err.message);
     return SAMPLE_PRODUCTS
       .filter(p => {
         if (filters.category && p.category !== filters.category) return false;
