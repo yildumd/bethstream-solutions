@@ -1,14 +1,15 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { MdArrowBack, MdArrowForward, MdRouter, MdVideocam, MdStorage, MdSdCard } from "react-icons/md";
+import { MdArrowBack, MdArrowForward, MdRouter, MdVideocam, MdStorage, MdSdCard, MdCable } from "react-icons/md";
 import { PRODUCT_CATEGORIES } from "../constants";
 import { getProducts } from "../services/productService";
 import ProductCard from "../components/products/ProductCard";
 
 const icons = {
-  networking: MdRouter,
-  cctv:       MdVideocam,
+  networking:  MdRouter,
+  cctv:        MdVideocam,
+  accessories: MdCable,
   recorders:  MdStorage,
   storage:    MdSdCard,
 };

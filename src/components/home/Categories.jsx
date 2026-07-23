@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { MdArrowForward, MdRouter, MdVideocam, MdStorage, MdSdCard } from "react-icons/md";
+import { MdArrowForward, MdRouter, MdVideocam, MdStorage, MdSdCard, MdCable } from "react-icons/md";
 import { PRODUCT_CATEGORIES } from "../../constants";
 
-const icons = { networking: MdRouter, cctv: MdVideocam, recorders: MdStorage, storage: MdSdCard };
+const icons = { networking: MdRouter, cctv: MdVideocam, recorders: MdStorage, storage: MdSdCard, accessories: MdCable };
 
 export default function Categories() {
   return (
