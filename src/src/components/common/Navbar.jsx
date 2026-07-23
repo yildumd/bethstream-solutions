@@ -105,7 +105,7 @@ export default function Navbar() {
 <img
   src="/bethstream-logo.png"
   alt="Bethstream Solutions"
-  className="h-16 w-auto object-contain py-1"
+  className="h-19 w-auto object-contain py-1"
 />
                 </div>
                 {NAV_LINKS.map(link => (
