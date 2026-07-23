@@ -63,8 +63,12 @@ export default function Contact() {
                 value: COMPANY.phones.join("\n"), href: `tel:${COMPANY.phones[0]}`,
               },
               {
-                icon: MdEmail, label: "Email", color: "text-brand-blue",
+                icon: MdEmail, label: "General Enquiries", color: "text-brand-blue",
                 value: COMPANY.email, href: `mailto:${COMPANY.email}`,
+              },
+              {
+                icon: MdEmail, label: "Sales", color: "text-brand-blue",
+                value: COMPANY.emailSales, href: `mailto:${COMPANY.emailSales}`,
               },
               {
                 icon: MdAccessTime, label: "Business Hours", color: "text-brand-blue",
@@ -165,7 +169,7 @@ export default function Contact() {
         {/* Map */}
         <div className="card overflow-hidden rounded-xl mt-8 h-72">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.4!2d3.3515!3d6.6018!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMzYnMDYuNSJOIDPCsDIxJzA1LjQiRQ!5e0!3m2!1sen!2sng!4v1234567890"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.407501068143!2d3.3342497731180334!3d6.596170422318466!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b9189aef316db%3A0x5b07eedc7b78a039!2s7%20Obafemi%20Awolowo%20Wy%2C%20Ikeja%2C%20Lagos%20101233%2C%20Lagos%2C%20Nigeria!5e0!3m2!1sen!2sng!4v1784827903617!5m2!1sen!2sng"
             width="100%" height="100%"
             style={{ border: 0 }}
             allowFullScreen loading="lazy"
