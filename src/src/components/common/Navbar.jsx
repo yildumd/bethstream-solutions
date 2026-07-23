@@ -49,13 +49,22 @@ export default function Navbar() {
           <div className="flex items-center justify-between h-20">
 
             {/* Logo */}
-            <Link to="/" className="flex items-center flex-shrink-0">
-              <img
-                src="/bethstream-logo.png"
-                alt="Bethstream Solutions"
-                className="h-24 w-auto object-contain"
-              />
-            </Link>
+            {/* Logo */}
+<Link to="/" className="flex items-center gap-3 flex-shrink-0">
+  <img
+    src="/favicon-logo.png"
+    alt="Bethstream"
+    className="h-12 w-12 object-contain"
+  />
+  <div>
+    <p className="font-display font-bold text-brand-slate text-xl leading-tight">
+      Bethstream
+    </p>
+    <p className="text-brand-blue text-sm font-bold tracking-widest uppercase leading-tight">
+      Solutions
+    </p>
+  </div>
+</Link>
 
             {/* Desktop links */}
             <div className="hidden lg:flex items-center gap-1">
