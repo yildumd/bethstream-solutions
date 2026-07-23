@@ -10,10 +10,21 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <div>
-            <Link to="/" className="flex items-center mb-5">
-              <img src="/bethstream-logo.png" alt="Bethstream Solutions"
-                className="h-10 w-auto object-contain brightness-0 invert" />
-            </Link>
+            <Link to="/" className="flex items-center gap-3 mb-4">
+  <img
+    src="/favicon-logo.png"
+    alt="Bethstream Solutions"
+    className="h-10 w-10 object-contain flex-shrink-0"
+  />
+  <div>
+    <p className="font-display font-bold text-white text-base leading-tight">
+      Bethstream
+    </p>
+    <p className="text-blue-300 text-xs font-semibold leading-tight tracking-wide">
+      Solutions
+    </p>
+  </div>
+</Link>
             <p className="text-slate-400 text-sm leading-relaxed mb-5">
               Nigeria's trusted provider of professional networking, CCTV, and enterprise security solutions.
             </p>
