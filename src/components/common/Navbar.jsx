@@ -50,15 +50,14 @@ export default function Navbar() {
           <div className="flex items-center justify-between h-16">
 
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-2.5 flex-shrink-0">
-              <div className="w-9 h-9 rounded-lg bg-brand-blue flex items-center justify-center">
-                <span className="text-white font-bold text-sm">BS</span>
-              </div>
-              <div>
-                <p className="font-display font-bold text-brand-slate text-sm leading-tight">Bethstream</p>
-                <p className="text-brand-blue text-xs font-semibold leading-tight">Solutions</p>
-              </div>
-            </Link>
+        {/* Logo */}
+<Link to="/" className="flex items-center flex-shrink-0">
+  <img
+    src="/bethstream-logo.png"
+    alt="Bethstream Solutions"
+    className="h-10 w-auto object-contain"
+  />
+</Link>
 
             {/* Desktop links */}
             <div className="hidden lg:flex items-center gap-1">
