@@ -43,30 +43,43 @@ export default function Navbar() {
 
       {/* Main nav */}
       <nav className={`sticky top-0 z-50 bg-white transition-shadow duration-200 ${
-        scrolled ? "shadow-nav" : "border-b border-brand-border"
+        scrolled ? "shadow-md" : "border-b border-brand-border"
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
 
-            {/* Logo */}
-            {/* Logo */}
-<Link to="/" className="flex items-center gap-3 flex-shrink-0">
-  <img
-    src="/favicon-logo.png"
-    alt="Bethstream"
-    className="h-12 w-12 object-contain"
-  />
-  <div>
-    <p className="font-display font-bold text-brand-slate text-xl leading-tight">
-      Bethstream
-    </p>
-    <p className="text-brand-blue text-sm font-bold tracking-widest uppercase leading-tight">
-      Solutions
-    </p>
-  </div>
-</Link>
+            {/* Logo — Icon + Text */}
+            <Link to="/" className="flex items-center gap-3 flex-shrink-0">
+              <img
+                src="/bethstream-logo.png"
+                style={{ height: "60px", width: "auto", objectFit: "contain" }}
+              />
+              <div>
+                <p style={{
+                  fontFamily: "'Plus Jakarta Sans', Inter, sans-serif",
+                  fontWeight: "800",
+                  fontSize: "18px",
+                  color: "#1E293B",
+                  lineHeight: "1.2",
+                  margin: 0,
+                }}>
+                  Bethstream
+                </p>
+                <p style={{
+                  fontWeight: "700",
+                  fontSize: "11px",
+                  color: "#1B4FD8",
+                  letterSpacing: "3px",
+                  textTransform: "uppercase",
+                  lineHeight: "1.2",
+                  margin: 0,
+                }}>
+                  Solutions
+                </p>
+              </div>
+            </Link>
 
-            {/* Desktop links */}
+            {/* Desktop Nav Links */}
             <div className="hidden lg:flex items-center gap-1">
               {NAV_LINKS.map(link => (
                 <Link key={link.path} to={link.path}
@@ -80,7 +93,7 @@ export default function Navbar() {
               ))}
             </div>
 
-            {/* Right side */}
+            {/* Right Side CTAs */}
             <div className="flex items-center gap-2">
               <a href={`https://wa.me/${COMPANY.whatsapp}`}
                 target="_blank" rel="noreferrer"
@@ -100,7 +113,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile menu */}
+        {/* Mobile Menu */}
         <AnimatePresence>
           {mobileOpen && (
             <motion.div
@@ -108,15 +121,41 @@ export default function Navbar() {
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               className="lg:hidden border-t border-brand-border bg-white overflow-hidden">
-              <div className="px-4 py-3 space-y-1">
-                {/* Mobile logo */}
-                <div className="pb-3 mb-2 border-b border-brand-border">
-<img
-  src="/bethstream-logo.png"
-  alt="Bethstream Solutions"
-  className="h-19 w-auto object-contain py-1"
-/>
+              <div className="px-4 py-4 space-y-1">
+
+                {/* Mobile Logo */}
+                <div className="flex items-center gap-3 pb-4 mb-2 border-b border-brand-border">
+                  <img
+                    src="/favicon-logo.png"
+                    alt="Bethstream Solutions"
+                    style={{ height: "44px", width: "44px", objectFit: "contain" }}
+                  />
+                  <div>
+                    <p style={{
+                      fontFamily: "'Plus Jakarta Sans', Inter, sans-serif",
+                      fontWeight: "800",
+                      fontSize: "16px",
+                      color: "#1E293B",
+                      lineHeight: "1.2",
+                      margin: 0,
+                    }}>
+                      Bethstream
+                    </p>
+                    <p style={{
+                      fontWeight: "700",
+                      fontSize: "10px",
+                      color: "#1B4FD8",
+                      letterSpacing: "3px",
+                      textTransform: "uppercase",
+                      lineHeight: "1.2",
+                      margin: 0,
+                    }}>
+                      Solutions
+                    </p>
+                  </div>
                 </div>
+
+                {/* Nav Links */}
                 {NAV_LINKS.map(link => (
                   <Link key={link.path} to={link.path}
                     className={`block px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
@@ -127,7 +166,9 @@ export default function Navbar() {
                     {link.label}
                   </Link>
                 ))}
-                <div className="pt-2 border-t border-brand-border space-y-2">
+
+                {/* Mobile CTAs */}
+                <div className="pt-3 border-t border-brand-border space-y-2">
                   <a href={`https://wa.me/${COMPANY.whatsapp}`}
                     target="_blank" rel="noreferrer"
                     className="flex items-center justify-center gap-2 w-full py-3 rounded-lg bg-green-500 hover:bg-green-600 text-white font-semibold text-sm transition-colors">
