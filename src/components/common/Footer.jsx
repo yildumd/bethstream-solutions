@@ -14,7 +14,7 @@ export default function Footer() {
   <img
     src="/bethstream-logo.png"
     alt="Bethstream Solutions"
-    className="h-10 w-auto object-contain brightness-0 invert"
+    className="h-12 w-auto object-contain"
   />
 </Link>
             <p className="text-slate-400 text-sm leading-relaxed mb-5">
