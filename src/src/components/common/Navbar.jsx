@@ -32,8 +32,7 @@ export default function Navbar() {
                 <MdPhone size={11} /> {p}
               </a>
             ))}
-            <a
-              href={`https://wa.me/${COMPANY.whatsapp}`}
+            <a href={`https://wa.me/${COMPANY.whatsapp}`}
               target="_blank" rel="noreferrer"
               className="flex items-center gap-1 text-blue-200 hover:text-white transition-colors">
               <MdWhatsapp size={12} /> WhatsApp
@@ -50,14 +49,12 @@ export default function Navbar() {
           <div className="flex items-center justify-between h-16">
 
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-2.5 flex-shrink-0">
-              <div className="w-9 h-9 rounded-lg bg-brand-blue flex items-center justify-center">
-                <span className="text-white font-bold text-sm">BS</span>
-              </div>
-              <div>
-                <p className="font-display font-bold text-brand-slate text-sm leading-tight">Bethstream</p>
-                <p className="text-brand-blue text-xs font-semibold leading-tight">Solutions</p>
-              </div>
+            <Link to="/" className="flex items-center flex-shrink-0">
+              <img
+                src="/bethstream-logo.png"
+                alt="Bethstream Solutions"
+                className="h-10 w-auto object-contain"
+              />
             </Link>
 
             {/* Desktop links */}
@@ -74,20 +71,17 @@ export default function Navbar() {
               ))}
             </div>
 
-            {/* Right side CTAs */}
+            {/* Right side */}
             <div className="flex items-center gap-2">
-              <a
-                href={`https://wa.me/${COMPANY.whatsapp}`}
+              <a href={`https://wa.me/${COMPANY.whatsapp}`}
                 target="_blank" rel="noreferrer"
                 className="hidden md:flex items-center gap-2 px-4 py-2 rounded-lg bg-green-500 hover:bg-green-600 text-white text-sm font-semibold transition-colors">
                 <MdWhatsapp size={17} /> WhatsApp
               </a>
-
               <Link to="/request-quote"
                 className="hidden md:flex btn-primary py-2 px-4 text-sm">
                 Get a Quote
               </Link>
-
               <button
                 onClick={() => setMobileOpen(!mobileOpen)}
                 className="lg:hidden p-2.5 rounded-lg text-brand-gray hover:bg-slate-100 transition-colors">
@@ -106,6 +100,14 @@ export default function Navbar() {
               exit={{ height: 0, opacity: 0 }}
               className="lg:hidden border-t border-brand-border bg-white overflow-hidden">
               <div className="px-4 py-3 space-y-1">
+                {/* Mobile logo */}
+                <div className="pb-3 mb-2 border-b border-brand-border">
+                  <img
+                    src="/bethstream-logo.png"
+                    alt="Bethstream Solutions"
+                    className="h-8 w-auto object-contain"
+                  />
+                </div>
                 {NAV_LINKS.map(link => (
                   <Link key={link.path} to={link.path}
                     className={`block px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
@@ -117,8 +119,7 @@ export default function Navbar() {
                   </Link>
                 ))}
                 <div className="pt-2 border-t border-brand-border space-y-2">
-                  <a
-                    href={`https://wa.me/${COMPANY.whatsapp}`}
+                  <a href={`https://wa.me/${COMPANY.whatsapp}`}
                     target="_blank" rel="noreferrer"
                     className="flex items-center justify-center gap-2 w-full py-3 rounded-lg bg-green-500 hover:bg-green-600 text-white font-semibold text-sm transition-colors">
                     <MdWhatsapp size={18} /> WhatsApp Us

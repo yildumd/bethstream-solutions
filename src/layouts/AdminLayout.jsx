@@ -63,10 +63,8 @@ export default function AdminLayout() {
       {/* Logo */}
       <div className="h-14 flex items-center px-5 border-b border-brand-border">
         <Link to="/" className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded-lg bg-brand-blue flex items-center justify-center flex-shrink-0">
-            <span className="text-white font-bold text-xs">BS</span>
-          </div>
-          <span className="font-display font-bold text-brand-slate text-sm">Admin Panel</span>
+          <img src="/bethstream-logo.png" alt="Bethstream Solutions"
+            className="h-7 w-auto object-contain" />
         </Link>
       </div>
 

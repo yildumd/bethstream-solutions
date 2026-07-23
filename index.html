@@ -1,38 +1,94 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
 
-    <!-- Primary SEO -->
-    <title>Bethstream Solutions — Networking, CCTV & Security Solutions in Lagos</title>
-    <meta name="description" content="Nigeria's trusted provider of professional networking, CCTV, surveillance, and security solutions. Serving Ikeja, Lagos and beyond. Shop cameras, switches, recorders and more." />
-    <meta name="keywords" content="CCTV Lagos, networking equipment Nigeria, IP cameras Ikeja, Hikvision Nigeria, Dahua CCTV, security cameras Lagos, structured cabling, access control Nigeria" />
-    <meta name="author" content="Bethstream Solutions" />
-    <meta name="robots" content="index, follow" />
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-    <!-- Open Graph -->
-    <meta property="og:type"        content="website" />
-    <meta property="og:url"         content="https://bethstreamsolutions.com" />
-    <meta property="og:title"       content="Bethstream Solutions — Smart Security & Networking" />
-    <meta property="og:description" content="Professional CCTV, networking and security solutions for Lagos businesses." />
-    <meta property="og:image"       content="/og-image.jpg" />
+@layer base {
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    @apply font-sans bg-brand-bg text-brand-slate antialiased;
+    overflow-x: hidden;
+  }
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { @apply bg-slate-100; }
+  ::-webkit-scrollbar-thumb { @apply bg-brand-blue/40 rounded-full; }
+}
 
-    <!-- Twitter -->
-    <meta name="twitter:card"        content="summary_large_image" />
-    <meta name="twitter:title"       content="Bethstream Solutions" />
-    <meta name="twitter:description" content="Professional security & networking solutions in Lagos, Nigeria." />
+@layer components {
+  /* Buttons */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3
+           bg-brand-blue hover:bg-brand-blueDark text-white font-semibold
+           rounded-lg transition-all duration-200 shadow-btn text-sm;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3
+           bg-white hover:bg-slate-50 text-brand-slate font-semibold
+           rounded-lg border border-brand-border transition-all duration-200 text-sm;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3
+           bg-transparent hover:bg-brand-blueLight text-brand-blue font-semibold
+           rounded-lg border border-brand-blue transition-all duration-200 text-sm;
+  }
+  .btn-green {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3
+           bg-brand-accent hover:bg-green-700 text-white font-semibold
+           rounded-lg transition-all duration-200 text-sm;
+  }
 
-    <!-- Theme -->
-    <meta name="theme-color" content="#7C3AED" />
+  /* Cards */
+  .card {
+    @apply bg-white border border-brand-border rounded-xl shadow-card;
+  }
+  .card-hover {
+    @apply card hover:shadow-card-hover hover:-translate-y-0.5 transition-all duration-200;
+  }
 
-    <!-- Fonts preload -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
-</html>
+  /* Form inputs */
+  .input-field {
+    @apply w-full bg-white border border-brand-border rounded-lg px-4 py-2.5
+           text-brand-slate placeholder-slate-400 text-sm
+           focus:outline-none focus:ring-2 focus:ring-brand-blue/20
+           focus:border-brand-blue transition-all duration-200;
+  }
+  .label-text {
+    @apply text-brand-slate text-sm font-medium mb-1.5 block;
+  }
+
+  /* Layout */
+  .section-padding { @apply py-16 px-4 sm:px-6 lg:px-8; }
+  .container-custom { @apply max-w-7xl mx-auto; }
+
+  /* Typography helpers */
+  .section-title {
+    @apply font-display font-bold text-3xl md:text-4xl text-brand-slate;
+  }
+  .section-sub {
+    @apply text-brand-gray text-base md:text-lg leading-relaxed;
+  }
+
+  /* Badges */
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold;
+  }
+  .badge-blue  { @apply badge bg-brand-blueLight text-brand-blue; }
+  .badge-green { @apply badge bg-green-50 text-green-700; }
+  .badge-gray  { @apply badge bg-slate-100 text-slate-600; }
+  .badge-red   { @apply badge bg-red-50 text-red-600; }
+
+  /* Admin sidebar link */
+  .admin-link {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium
+           text-slate-600 hover:text-brand-blue hover:bg-brand-blueLight
+           transition-all duration-150;
+  }
+  .admin-link-active {
+    @apply admin-link text-brand-blue bg-brand-blueLight;
+  }
+
+  /* Skeleton */
+  .skeleton { @apply animate-pulse bg-slate-200 rounded-lg; }
+}

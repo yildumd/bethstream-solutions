@@ -10,6 +10,7 @@ const COL = "products";
 
 export const getProducts = async (filters = {}) => {
   try {
+    // First try — with all filters including orderBy
     const constraints = [];
     if (filters.category) constraints.push(where("category", "==", filters.category));
     if (filters.featured) constraints.push(where("featured", "==", true));
@@ -23,6 +24,7 @@ export const getProducts = async (filters = {}) => {
       return snap.docs.map(d => ({ id: d.id, ...d.data() }));
     }
 
+    // Second try — without orderBy (in case index isn't built yet)
     const simpleConstraints = [];
     if (filters.category) simpleConstraints.push(where("category", "==", filters.category));
     if (filters.featured) simpleConstraints.push(where("featured", "==", true));
@@ -36,6 +38,7 @@ export const getProducts = async (filters = {}) => {
       return results;
     }
 
+    // Fallback — return sample products
     return SAMPLE_PRODUCTS
       .filter(p => {
         if (filters.category && p.category !== filters.category) return false;
@@ -81,7 +84,7 @@ export const addProduct = async (data, imageFiles = []) => {
 };
 
 export const updateProduct = async (id, data, imageFiles = []) => {
-  let imageUrls = data.images || [];
+  let imageUrls = data.images || []
   if (imageFiles && imageFiles.length > 0) {
     const uploaded = await uploadImages(imageFiles);
     imageUrls = [...imageUrls, ...uploaded];
