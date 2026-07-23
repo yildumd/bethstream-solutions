@@ -46,7 +46,7 @@ export default function Navbar() {
         scrolled ? "shadow-nav" : "border-b border-brand-border"
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex items-center justify-between h-20">
 
             {/* Logo */}
             <Link to="/" className="flex items-center flex-shrink-0">
@@ -102,11 +102,11 @@ export default function Navbar() {
               <div className="px-4 py-3 space-y-1">
                 {/* Mobile logo */}
                 <div className="pb-3 mb-2 border-b border-brand-border">
-                  <img
-                    src="/bethstream-logo.png"
-                    alt="Bethstream Solutions"
-                    className="h-8 w-auto object-contain"
-                  />
+<img
+  src="/bethstream-logo.png"
+  alt="Bethstream Solutions"
+  className="h-16 w-auto object-contain py-1"
+/>
                 </div>
                 {NAV_LINKS.map(link => (
                   <Link key={link.path} to={link.path}
