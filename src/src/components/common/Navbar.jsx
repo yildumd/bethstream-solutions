@@ -53,7 +53,7 @@ export default function Navbar() {
               <img
                 src="/bethstream-logo.png"
                 alt="Bethstream Solutions"
-                className="h-18 w-auto object-contain"
+                className="h-20 w-auto object-contain"
               />
             </Link>
 
